@@ -1,0 +1,45 @@
+.container{
+  border-bottom: 0;
+}
+.music-list{
+  padding: 0 10px;
+}
+.music-content-wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ebebeb;
+}
+.music-content{
+  display: flex;
+}
+.music-content{
+  display: flex;
+}
+.music-thum{
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.thum{
+  width: 40px;
+  height: 40px;
+}
+.music-text-title{
+  margin-bottom: 10px;
+}
+.music-text-title, .music-text-author{
+  display: block;
+  font-size: 16px;
+}
+.music-text-author{
+  font-size: 12px;
+  color: #89bdf7;
+}
+.arrow-right{
+  display: block;
+  width: 20px;
+  height: 20px;
+}

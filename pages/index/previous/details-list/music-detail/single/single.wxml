@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="m-header">
+    <image src="{{singleData.cover}}" mode="widthFix" class="m-header-img"></image>
+  </view>
+  <view class="music-wrap">
+    <view class="music-intr">
+      <view class="music-intr-left">
+        <view class="avatar">
+          <image class="avatar-img" src="{{singleData.author.web_url}}"></image>
+        </view>
+        <view class="music-header-text">
+          <text class="userName">{{singleData.author.user_name}}</text>
+          <text class="desc">{{singleData.author.desc}}</text>
+        </view>
+      </view>
+      <view class="music-intr-right" data-music-id="{{singleData.music_id}}" bindtap='togglePlay' data-music-title="{{singleData.title}}">
+        <image class="musicPlay" src="{{play_url}}" mode="aspectFill"></image>
+      </view>
+    </view>
+    <view class="music-title">
+      <text>{{singleData.title}}</text>
+    </view>
+    <view class="time">
+      <text>{{singleData.maketime}}</text>
+    </view>
+  </view>
+  <view class="music-message">
+    <include wx:if="{{singleData.contentType === 'story'}}"src="components/music-story.wxml"></include>
+    <include wx:if="{{singleData.contentType === 'lyric'}}" src="components/music-lyric.wxml"></include>
+    <include wx:if="{{singleData.contentType === 'about'}}" src="components/music-about.wxml"></include>
+  </view>
+</view>

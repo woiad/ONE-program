@@ -1,0 +1,20 @@
+<!--pages/index/previous/details-list/detailList.wxml-->
+<loading hidden="{{loadingHiden}}"></loading>
+<scroll-view scroll-y="true">
+  <view class="container">
+    <block wx:for="{{itemList}}" wx:key="index">
+      <view class="card" bindtap="clikeHandel" data-hp_img_url="{{item.hp_img_url}}" data-hp_title="{{item.hp_title}}" data-hp_makettime="{{item.hp_makettime}}" data-hp_content="{{item.hp_content}}" data-hp_author="{{item.hp_author}}">
+        <view class="card-header">
+          <image mode="aspectFill" src="{{item.hp_img_url}}" class="img"></image>
+          <view class="card-header-text">
+            <text class="left">{{item.hp_title}}</text>
+            <text class="right">{{item.hp_makettime}}</text>
+          </view>
+        </view>
+        <view class="card-bot">
+          <text class="card-bot-text">{{item.hp_content}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

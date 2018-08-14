@@ -1,0 +1,36 @@
+<!--pages/read/details/detail.wxml-->
+<view class="container">
+  <view class="header" wx:if="{{title !== '问答'}}">
+    <view class="header-left">
+      <view class="avatar-img">
+        <image class="avatar" src="{{textData.author_list[0].web_url}}"></image>
+      </view>
+      <view class="text">
+        <text class="text-author">{{textData.author_list[0].user_name}}</text>
+        <text class="text-time">{{textData.maketime}}</text>
+      </view>
+    </view>
+    <view class="header-right" wx:if="{{textData.audio}}">
+      <view class="listen">
+        <image class="audio-image" src="{{audio_img}}" bindtap='toggleAudio'></image>
+        <text class="audio-text">{{audioText}}</text>
+      </view>
+    </view>
+  </view>
+  <view wx:else class="que-header">
+    <view class="head-content">
+      <text class="que-title">{{textData.question_title}}</text>
+      <text class="que-content">{{textData.question_content}}</text>
+    </view>
+    <view class="que-time">
+      <text>{{textData.question_makettime}}</text>
+    </view>
+  </view>
+  <view class="title" vi-if="{{title !== '问答'}}">{{textData.hp_title ? textData.hp_title : textData.title}}</view>
+  <view class="artical-content">
+    <text class="artical">{{textData.hp_content}}</text>
+  </view>
+  <view class="artical-edt">
+    <text>{{textData.hp_author_introduce || textData.charge_edt}}</text>
+  </view>
+</view>

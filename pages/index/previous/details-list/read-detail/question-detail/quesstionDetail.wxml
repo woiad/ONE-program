@@ -1,0 +1,12 @@
+<loading hidden="{{loadingHiden}}">正在加载...</loading>
+<view class="container-wrap">
+  <view class="list" wx:for="{{questionData}}" wx:key="{{index}}">
+    <view class="item" data-question-id="{{item.question_id}}" bindtap="questionClick" data-sort="问答" data-port="question">
+      <view class="top">
+        <text class="title">{{item.question_title}}</text>
+        <text class="sort">问答</text>
+      </view>
+      <text class="desc">{{item.answer_content}}</text>
+    </view>
+  </view>
+</view>

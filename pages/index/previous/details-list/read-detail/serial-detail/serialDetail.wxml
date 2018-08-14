@@ -1,0 +1,15 @@
+<!--pages/index/previous/details-list/read-detail/serial-detail/serialDetail.wxml-->
+<loading hidden="{{loadHiden}}">正在加载...</loading>
+<view class="container-wrap">
+  <view class="list" wx:for="{{serialData}}" wx:key="{{index}}">
+    <view class="item item-essay" data-essay-id="{{item.id}}" bindtap="serialClick" data-sort="连载" data-port="serialcontent">
+      <view class="top">
+        <text class="title">{{item.title}}</text>
+        <text class="sort">连载</text>
+      </view>
+      <text class="author">{{item.author.user_name}}</text>
+      <text class="desc">{{item.excerpt}}</text>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,19 @@
+<loading hidden="{{loadingHiden}}">正在加载...</loading>
+<view class="container">
+  <view class="music-list" wx:for="{{musicItem}}" wx:key="index">
+    <view class="music-content-wrap" bindtap="clickHandle" data-single="{{item}}" >
+      <view class="music-content">
+        <view class="music-thum">
+          <image class="thum" src="{{item.cover}}" mode="aspectFill"></image>
+        </view>
+        <view class="music-text">
+          <text class="music-text-title">{{item.title}}</text>
+          <text class="music-text-author">{{item.author.user_name}}</text>
+        </view>
+      </view>
+      <view class="music-arrow">
+        <image class="arrow-right" src="../../../../image/forward.png"></image>
+      </view>
+    </view>
+  </view>
+</view>

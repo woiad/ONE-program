@@ -1,0 +1,18 @@
+<!--pages/index/previous/details-list/detail/detail.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="card-header">
+      <image src="{{url}}"></image>
+      <view class="card-header-text">
+        <text>{{title}}</text>
+        <text>{{author}}</text>
+      </view>
+    </view>
+    <view class="card-content">
+      <text class="content">{{content}}</text>
+    </view>
+    <view class="card-bot">
+      <text>{{time}}</text>
+    </view>
+  </view>
+</view>

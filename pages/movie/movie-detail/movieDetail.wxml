@@ -1,0 +1,39 @@
+<!--pages/movie/movie-detail/movieDetail.wxml-->
+<loading hidden="{{loaidngHidden}}">正在加载...</loading>
+<view class="container" wx:if="{{loaidngHidden}}"> 
+  <view class="scroll-wrap">
+    <swiper duration="700" indicator-dots="true" >
+      <swiper-item wx:for="{{detail.photo}}" wx:key="index">
+        <image src="{{item}}" class="banner-img" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="content">
+    <view class="content-title">
+      <text> {{detail.title}}</text>
+    </view>
+    <view class="content-sort">
+      <view class="contetn-sort-text">
+        <text>{{showTitle}}</text>
+      </view>
+      <view class="content-sort-icon" bindtap="switchContent">
+        <image class="story-icon" src="{{story_url}}" mode="aspectFill" data-type="story"></image>
+        <image class="about-icon" src="{{about_url}}" mode="aspectFill" data-type="about"></image>
+      </view>
+    </view>
+    <view class="story-contetn" wx:if="{{showTitle === '文章'}}">
+      <text class="story-content-title">
+        {{text.data[0].title}}
+      </text>
+      <text class="story-content-author">文 / {{text.data[0].user.user_name}}</text>
+      <import src="../../../towxml/entry.wxml" />
+      <template is="entry" data="{{...contentData}}" />
+       <view class="story-content-edit">
+         <text>{{text.data[0].charge_edt}}</text>
+      </view>
+    </view>
+    <view class="about-content" wx:if="{{showTitle === '电影信息'}}">
+      <text>{{detail.info}}</text>
+    </view>
+  </view>
+</view>

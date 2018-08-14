@@ -1,0 +1,28 @@
+
+<view class="music-type">
+  <view class="music-type-text">
+    <text>音乐故事</text>
+  </view>
+  <view class="music-type-icons" bindtap='switchContent'>
+    <view>
+      <image class="type-icon" src="../../../../../image/music_story_selected.png" mode="aspectFill"></image>
+    </view>
+    <view>
+      <image class="type-icon" src="../../../../../image/music_lyric_default.png" mode="aspectFill" data-type="lyric"></image>
+    </view>
+    <view>
+      <image class="type-icon" src="../../../../../image/music_about_default.png" mode="aspectFill" data-type="about"></image>
+    </view>
+  </view>
+</view>
+<view class="music-story music">
+  <view class="music-story-title">
+    <text>{{singleData.story_title}}</text>
+  </view>
+  <view class="music-story-author">
+    <text>{{singleData.story_author.user_name}}</text>
+  </view>
+  <view class="music-story-content">
+    <text>{{singleData.story}}</text>
+  </view>
+</view>

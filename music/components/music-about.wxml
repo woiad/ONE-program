@@ -1,0 +1,20 @@
+
+<view class="music-type">
+  <view class="music-type-text">
+    <text>歌曲信息</text>
+  </view>
+  <view class="music-type-icons" data-music-id="{{item.id}}" bindtap='switchContent'>
+    <view>
+      <image class="type-icon" src="../image/music_story_default.png" mode="aspectFill" data-type="story"></image>
+    </view>
+    <view data-type="lyric">
+      <image class="type-icon" src="../image/music_lyric_default.png" mode="aspectFill" data-type="lyric"></image>
+    </view>
+    <view>
+      <image class="type-icon" src="../image/music_about_selected.png" mode="aspectFill"></image>
+    </view>
+  </view>
+</view>
+<view class="music-about music">
+  <text>{{item.info}}</text>
+</view>

@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/read/read",
+    "pages/music/music",
+    "pages/movie/movie",
+    "pages/index/previous/previous",
+    "pages/index/previous/details-list/detailList",
+    "pages/index/previous/details-list/detail/detail",
+    "pages/read/details/detail",
+    "pages/index/previous/details-list/read-detail/essay-detail/essayDetail",
+    "pages/index/previous/details-list/read-detail/question-detail/quesstionDetail",
+    "pages/index/previous/details-list/read-detail/serial-detail/serialDetail",
+    "pages/index/previous/details-list/music-detail/music-detail",
+    "pages/index/previous/details-list/music-detail/single/single",
+    "pages/movie/movie-detail/movieDetail"
+  ],
+  "tabBar": {
+    "color": "#888",
+    "selectedColor": "#89bdf7",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/image/home.png",
+        "selectedIconPath": "pages/image/home_active.png"
+      },
+      {
+        "pagePath": "pages/read/read",
+        "text": "阅读",
+        "iconPath": "pages/image/reading.png",
+        "selectedIconPath": "pages/image/reading_active.png"
+      },
+      {
+        "pagePath": "pages/music/music",
+        "text": "音乐",
+        "iconPath": "pages/image/music.png",
+        "selectedIconPath": "pages/image/music_active.png"
+      },
+      {
+        "pagePath": "pages/movie/movie",
+        "text": "电影",
+        "iconPath": "pages/image/movie.png",
+        "selectedIconPath": "pages/image/movie_active.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "ONE",
+    "navigationBarTextStyle": "black"
+  }
+}

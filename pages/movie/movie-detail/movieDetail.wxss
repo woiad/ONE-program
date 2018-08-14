@@ -1,0 +1,46 @@
+@import '../../../towxml/style/main.wxss';
+.container{
+  border-bottom: none;
+}
+.banner-img{
+  width: 100%;
+  height: 150px;
+}
+.content{
+  padding: 10px;
+}
+.content-title{
+  font-size: 12px;
+  color: #8e8e93;
+}
+.content-sort{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+}
+.contetn-sort-text{
+  font-size: 12px;
+}
+.story-icon, .about-icon{
+  width: 35px;
+  height: 18px;
+}
+.story-content-title{
+  font-size: 16px;
+}
+.story-content-author{
+  margin-top: 10px;
+  color: #89bdf7;
+  font-size: 12px;
+}
+.story-content-edit{
+  font-size: 12px;
+  color: #888;
+}
+.about-content{
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+}

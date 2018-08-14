@@ -1,0 +1,43 @@
+<!--pages/read/read.wxml-->
+<loading hidden="{{loadingHiden}}">正在加载...</loading>
+<view class="container">
+  <view class="carousel-wrap">
+    <swiper duration="700" indicator-dots='true' autoplay='true'>
+      <swiper-item wx:for="{{carouselItem}}" wx:key="index">
+        <image class="carousel-img" src="{{item.cover}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <swiper duration='700' class="content" bindchange='swiperHandle' current='{{current}}'>
+    <swiper-item wx:for="{{storyEssay}}" wx:key="index" class="content">
+      <scroll-view scroll-y="true" class="scroll-y">
+        <view class="card">
+          <view class="item item-essay" data-essay-id="{{item.content_id}}" bindtap="essayClick" data-sort="短篇" data-port="essay">
+            <view class="top">
+              <text class="title">{{item.hp_title}}</text>
+              <text class="sort">短篇</text>
+            </view>
+            <text class="author">{{item.author[0].user_name}}</text>
+            <text class="desc">{{item.guide_word}}</text>
+          </view>
+          <view class="item item-serial" data-serial-id="{{serial[index].id}}" bindtap="serialClick" data-sort="连载" data-port="serialcontent">
+            <view class="top">
+              <text class="title">{{serial[index].title}}</text>
+              <text class="sort">连载</text>
+            </view>
+            <text class="author">{{serial[index].author.user_name}}</text>
+            <text class="desc">{{serial[index].excerpt}}</text>
+          </view>
+          <view class="item item-question" data-question-id="{{question[index].question_id}}" bindtap="questionClick" data-sort="问答" data-port="question">
+            <view class="top">
+              <text class="title">{{question[index].question_title}}</text>
+              <text class="sort">问答</text>
+            </view>
+            <text class="desc">{{question[index].answer_content}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item></swiper-item>
+  </swiper>
+</view>

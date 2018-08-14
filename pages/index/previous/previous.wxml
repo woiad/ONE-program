@@ -1,0 +1,25 @@
+<!--pages/index/previous/previous.wxml-->
+<loading hidden="{{loadingHiden}}">正在加载...</loading>
+<scroll-view scroll-y="true">
+  <view class="container">
+    <view class="header" wx:if="{{sort === 'read'}}">
+      <view class="essay" data-active="essay" bindtap='essayChose'>
+        <text class="{{active === 'essay' ? 'selected' : 'no-select'}}">短篇</text>
+      </view>
+      <view class="serial" data-active="serial" bindtap='serialChose'>
+        <text class="{{active === 'serialcontent' ? 'selected' : 'no-select'}}">连载</text>
+      </view>
+      <view class="question" data-active="question" bindtap="questionChose">
+        <text class="{{active === 'question' ? 'selected' : 'no-select'}}">问答</text>
+      </view>
+    </view>
+    <view class="list" wx:for="{{timeArr}}" wx:key="{{index}}" bindtap="clickHandle" data-time="{{item}}">
+      <view class="left">
+        <text>{{item}}</text>
+      </view>
+      <view class="right">
+        <image src="../../image/forward.png" mode="aspectFil"></image>
+      </view>
+    </view>
+  </view>
+</scroll-view>

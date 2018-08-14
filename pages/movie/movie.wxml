@@ -1,0 +1,14 @@
+<loading hidden="{{loadingHiden}}">正在加载...</loading>
+<view class="container">
+  <scroll-view class="movies" scroll-y="true" bindscrolltolower="getMovies" height="{{scrollHeight}} + 'px'">
+    <view wx:for="{{movies}}" class="movie" wx:key="id" data-id="{{item.item_id}}" bindtap="getDetail">
+      <image class="movie-cover" src="{{item.img_url}}" mode="aspectFill"></image>
+      <view class="movie-title">
+        <text>{{item.subtitle}}</text>
+      </view>
+      <view class="movie-score">
+        <text>{{item.title}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,14 @@
+<!--pages/index/previous/details-list/read-detail/essay-detail/essayDetail.wxml-->
+<loading hidden="{{loadHiden}}">正在加载...</loading>
+<view class="container-wrap">
+  <view class="list" wx:for="{{essayData}}" wx:key="{{index}}">
+    <view class="item item-essay" data-essay-id="{{item.content_id}}" bindtap="essayClick" data-sort="短篇" data-port="essay">
+          <view class="top">
+            <text class="title">{{item.hp_title}}</text>
+            <text class="sort">短篇</text>
+          </view>
+          <text class="author">{{item.author[0].user_name}}</text>
+          <text class="desc">{{item.guide_word}}</text>
+        </view>
+  </view>
+</view>

@@ -1,0 +1,4 @@
+@import '../../../../../music/music.wxss'
+.container{
+  border-bottom: none
+}

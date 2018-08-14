@@ -1,0 +1,48 @@
+/* pages/index/previous/details-list/detailList.wxss */
+.container{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+.card {
+  width: 48%;
+  margin-bottom: 10px;
+  border: 1px solid #ebebeb;
+}
+.card-header{
+  position: relative;
+}
+.card-header-text{
+  position: absolute;
+  bottom: 3px;
+  width: 100%;
+  background: rgba(0, 0, 0, .3);
+  color: #fff;
+  padding: 3px 5px;
+  box-sizing: border-box;
+  font-size: 12px;
+  font-weight: 200;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.img{
+  width: 100%;
+  height: 300rpx;
+}
+.card-bot{
+  padding: 5px 3px;
+}
+.card-bot-text{
+  display: -webkit-box;
+   width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 12px;
+  overflow: hidden;
+}

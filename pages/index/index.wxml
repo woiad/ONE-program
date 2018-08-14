@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<view class="container">
+  <loading hidden="{{loadingHiden}}">正在加载...</loading>
+  <swiper duration="700" class="vol-swiper" current="{{current}}" bindchange="changeHandle">
+    <block wx:for="{{itemList}}" wx:key="{{hpcontent_id}}">
+        <swiper-item class="card_wrap">
+          <view class="card">
+            <view class="card_top">
+              <image mode="aspectFill" src="{{item.hp_img_url}}" class="card_top_img"></image>
+              <view class="card_top_text">
+                <text class="title">{{item.hp_title}}</text>
+                <text class="author">{{item.hp_author}}</text>
+              </view>
+            </view>
+            <view class="card_content">
+              <text>{{item.hp_content}}</text>
+            </view>
+            <view class="card_time">
+              <text>{{item.hp_makettime}}</text>
+            </view>
+          </view>
+        </swiper-item>
+    </block>
+    <swiper-item></swiper-item>
+  </swiper>
+</view>

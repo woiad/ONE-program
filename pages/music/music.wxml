@@ -1,0 +1,42 @@
+<loading hidden="{{loadingHiden}}">正在加载...</loading>
+<view class="container">
+  <swiper duration='700' class="swiper-wrap" bindchange="slideChangeHandle" current="{{current}}">
+    <swiper-item wx:for="{{itemList}}" wx:key="{{index}}">
+      <scroll-view scroll-y="true" class="scroll-wrap">
+        <view class="item-wrap">
+          <view class="m-header">
+            <image src="{{item.cover}}" mode="widthFix" class="m-header-img"></image>
+          </view>
+          <view class="music-wrap">
+            <view class="music-intr">
+              <view class="music-intr-left">
+                <view class="avatar">
+                  <image class="avatar-img" src="{{item.author.web_url}}"></image>
+                </view>
+                <view class="music-header-text">
+                  <text class="userName">{{item.author.user_name}}</text>
+                  <text class="desc">{{item.author.desc}}</text>
+                </view>
+              </view>
+              <view class="music-intr-right" data-music-id="{{item.music_id}}" bindtap='togglePlay' data-music-title="{{item.title}}">
+                <image class="musicPlay" src="{{ item.id === playId ? play_url : default_url}}"></image>
+              </view>
+            </view>
+            <view class="music-title">
+              <text>{{item.title}}</text>
+            </view>
+            <view class="time">
+              <text>{{item.maketime}}</text>
+            </view>
+          </view>
+          <view class="music-message">
+            <include wx:if="{{item.contentType === 'story'}}"src="components/music-story.wxml"></include>
+            <include wx:if="{{item.contentType === 'lyric'}}" src="components/music-lyric.wxml"></include>
+            <include wx:if="{{item.contentType === 'about'}}" src="components/music-about.wxml"></include>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item></swiper-item>
+  </swiper>
+</view>
