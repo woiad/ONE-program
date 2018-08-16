@@ -1,4 +1,4 @@
-// pages/index/previous/details-list/music-detail/music-detail.js
+ import api from '../../../../../api/api.js'
 Page({
 
   /**
@@ -18,14 +18,17 @@ Page({
     this.setData({
       title: options.title
     })
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/music/bymonth/' + options.time,
-      method: 'GET',
-      success: function (res){
-        _this.setData({
-          musicItem: _this.data.musicItem.concat(res.data.data),
-          loadingHiden: true
-        })
+    api.getMusicList({
+      query: {
+        time: options.time
+      },
+      success: (res) => {
+        if (res.data.res === 0) {
+          this.setData({
+            musicItem: _this.data.musicItem.concat(res.data.data),
+            loadingHiden: true
+          })
+        }
       }
     })
   },
@@ -81,9 +84,8 @@ Page({
   
   },
   clickHandle: function (e) {
-    let chart = JSON.stringify(e.currentTarget.dataset.single)
     wx.navigateTo({
-      url: 'single/single?single=' + chart
+      url: 'single/single?single=' + e.currentTarget.dataset.single
     })
   }
 })

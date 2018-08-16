@@ -1,4 +1,4 @@
-// pages/index/previous/details-list/read-detail/serial-detail/serialDetail.js
+import api from '../../../../../../api/api.js'
 Page({
 
   /**
@@ -13,13 +13,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/serialcontent/bymonth/' + options.time,
-      method: 'GET',
-      success: function (res) {
-        _this.setData({
-          serialData: _this.data.serialData.concat(res.data.data),
+    api.getReadSerialList({
+      query: {
+        time: options.time
+      },
+      success: (res) => {
+        this.setData({
+          serialData: this.data.serialData.concat(res.data.data),
           loadHiden: true
         })
       }

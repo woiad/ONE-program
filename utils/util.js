@@ -1,4 +1,4 @@
-import {BEGIN_TIME, MONTH} from 'CONST'
+import { VOL_BEGIN_TIME, MONTH, OTHER_BEGIN_TIME} from 'CONST'
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -13,33 +13,27 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
+const getBeginTime = (type) => {
+  let isOther = type !== 'read' && type !== 'music' && type !== 'question'
+  let beginTime = isOther ? VOL_BEGIN_TIME : OTHER_BEGIN_TIME
+  return new Date(beginTime)
+}
 const formatMakettime = (dateString) => {
-  console.log()
   return (new Date(dateString)).toString().split(' ', 4).slice(1, 4).join(' ')
 }
-const timeList = () => {
+const timeList = (type) => {
   let timeArr = []
   let diff = 0
   let end_time = parseInt(new Date().getFullYear())
-  let beg_time = parseInt(new Date(BEGIN_TIME).getFullYear())
-  let beg_month = new Date(BEGIN_TIME).getMonth() + 1
+  let beg_time = parseInt(getBeginTime(type).getFullYear())
+  let beg_month = getBeginTime(type).getMonth() + 1
   let end_month = new Date().getMonth() + 1
-  if (end_time > beg_time) {
-    diff  = end_time - beg_time + 1
-  }
-  for (let i = 0; i < diff; i++) {
+  for (let i = end_time; i >= beg_time; i--) {
     for (let j = MONTH.length; j > 0; j--) {
-      if (i === 0 && j <= end_month) {
-        timeArr.push(MONTH[j-1] + '.' + (end_time - i))
-      } else if (i === diff -1 && j >= beg_month) {
-        timeArr.push(MONTH[j-1] + '.' + (end_time - i))
-      } else if (i > 0 && i < diff -1) {
-        timeArr.push(MONTH[j-1] + '.' + (end_time - i))
-      }
+      timeArr.push(MONTH[j-1] + '.' + (i))
     }
   }
-  return timeArr
+  return timeArr.slice(12 - end_month, timeArr.length - (beg_month-1))
 }
 const filterContent = function (text) {
   let filText =  text.replace(/[\r\n]/g, '').replace(/<.*?>/g, '\n');

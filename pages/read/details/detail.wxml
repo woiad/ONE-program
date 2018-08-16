@@ -1,5 +1,6 @@
 <!--pages/read/details/detail.wxml-->
-<view class="container">
+<loading hidden="{{loadingHiden}}">正在加载...</loading>
+<view class="container" wx:if="{{loadingHiden}}">
   <view class="header" wx:if="{{title !== '问答'}}">
     <view class="header-left">
       <view class="avatar-img">

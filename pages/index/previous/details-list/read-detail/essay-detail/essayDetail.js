@@ -1,4 +1,5 @@
 // pages/index/previous/details-list/read-detail/essay-detail/essayDetail.js
+import api from '../../../../../../api/api.js'
 Page({
 
   /**
@@ -13,15 +14,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this
-    console.log(options)
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/essay/bymonth/' + options.time,
-      method: 'GET',
-      success: function (res) {
-        console.log(res)
-        _this.setData({
-          essayData: _this.data.essayData.concat(res.data.data),
+    api.getReadEssayList({
+      query: {
+        time: options.time
+      },
+      success: (res) => {
+        this.setData({
+          essayData: this.data.essayData.concat(res.data.data),
           loadHiden: true
         })
       }

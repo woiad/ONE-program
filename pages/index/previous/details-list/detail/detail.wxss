@@ -33,7 +33,7 @@ image{
 .content{
   display: block;
   width: 100%;
-  height: 200rpx;
+  min-height: 200rpx;
 }
 .card-bot{
   font-size: 12px;

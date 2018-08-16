@@ -1,5 +1,6 @@
 // pages/index/previous/details-list/music-detail/single/single.js
 import util from "../../../../../../utils/util.js"
+import api from '../../../../../../api/api.js'
 Page({
 
   /**
@@ -8,25 +9,28 @@ Page({
   data: {
     singleData: {},
     play_url: '../../../../../image/music_play.png',
-    flag: true
+    flag: true,
+    loadingHiden: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this
-    let obj = JSON.parse(options.single)
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/music/detail/' + obj.id,
-      method: 'GET',
-      success: function (res) {
-        res.data.data.makettime = util.formatMakettime(res.data.data.makettime)
-        res.data.data.story = util.filterContent(res.data.data.story)
-        res.data.data.contentType = 'story'
-        _this.setData({
-          singleData: res.data.data
-        })
+    api.getMusicListDetail({
+      query: {
+        id: options.single
+      },
+      success: (res) => {
+        if (res.data.res === 0) {
+          res.data.data.makettime = util.formatMakettime(res.data.data.makettime)
+          res.data.data.story = util.filterContent(res.data.data.story)
+          res.data.data.contentType = 'story'
+          this.setData({
+            singleData: res.data.data,
+            loadingHiden: true
+          })
+        }
       }
     })
   },

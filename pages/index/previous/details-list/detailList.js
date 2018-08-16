@@ -1,4 +1,5 @@
 // pages/index/previous/details-list/detailList.js
+import api from '../../../../api/api.js'
 Page({
 
   /**
@@ -19,18 +20,22 @@ Page({
     this.setData({
       title: options.title
     })
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/hp/bymonth/' + params,
-      methods: 'GET',
-      success: function (res) {
-        for (let i = 0; i < res.data.data.length; i++) {
-          let time = new Date(res.data.data[i].hp_makettime).toString().split(' ').slice(1, 4).join(' ')
-          res.data.data[i].hp_makettime = time
+    api.getVolList({
+      query: {
+        time: options.time
+      },
+      success: (res) => {
+        console.log(res)
+        if (res.data.res === 0) {
+          let monthly = res.data.data
+          monthly.map((vol) => {
+            vol.hp_makettime = new Date(vol.hp_makettime).toString().split(' ').slice(1, 4).join(' ')
+          })
+          this.setData({
+            itemList: monthly,
+            loadingHiden: true
+          })
         }
-        _this.setData({
-          itemList: _this.data.itemList.concat(res.data.data),
-          loadingHiden: true
-        })
       }
     })
   },

@@ -24,7 +24,7 @@ Page({
       })
     }
     this.setData({
-      timeArr: util.timeList(),
+      timeArr: util.timeList(options.page),
       loadingHiden: true
     })
   },

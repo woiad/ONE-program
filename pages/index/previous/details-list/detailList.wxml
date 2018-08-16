@@ -1,5 +1,5 @@
 <!--pages/index/previous/details-list/detailList.wxml-->
-<loading hidden="{{loadingHiden}}"></loading>
+<loading hidden="{{loadingHiden}}">正在加载...</loading>
 <scroll-view scroll-y="true">
   <view class="container">
     <block wx:for="{{itemList}}" wx:key="index">

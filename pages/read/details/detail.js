@@ -1,5 +1,6 @@
 // pages/read/details/detail.js
 import util from '../../../utils/util.js'
+import api from '../../../api/api.js'
 Page({
 
   /**
@@ -9,7 +10,8 @@ Page({
     audio_img: '../../image/audio_play.png',
     title: '',
     textData: {},
-    audioText: '收听'
+    audioText: '收听',
+    loadingHiden: false
   },
 
   /**
@@ -21,24 +23,29 @@ Page({
     this.setData({
       title: options.sort
     })
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/' + options.port + '/' + options.id,
-      method: 'GET' ,
-      success: function (res) {
-        if (res.data.data.hp_content) {
-          res.data.data.hp_content = util.filterContent(res.data.data.hp_content)
+    api.getReadById({
+      query: {
+        port: options.port,
+        id: options.id
+      },
+      success: (res) => {
+        if (res.data.res === 0) {
+          if (res.data.data.hp_content) {
+            res.data.data.hp_content = util.filterContent(res.data.data.hp_content)
+          }
+          if (res.data.data.content) {
+            res.data.data.hp_content = util.filterContent(res.data.data.content)
+          }
+          if (res.data.data.answer_content) {
+            res.data.data.hp_content = util.filterContent(res.data.data.answer_content)
+          }
+          res.data.data.maketime = util.formatMakettime(res.data.data.maketime)
+          res.data.data.question_makettime = util.formatMakettime(res.data.data.question_makettime)
+          this.setData({
+            textData: res.data.data,
+            loadingHiden: true
+          })
         }
-        if (res.data.data.content) {
-          res.data.data.hp_content = util.filterContent(res.data.data.content)
-        }
-        if (res.data.data.answer_content) {
-          res.data.data.hp_content = util.filterContent(res.data.data.answer_content)
-        }
-        res.data.data.maketime = util.formatMakettime(res.data.data.maketime)
-        res.data.data.question_makettime = util.formatMakettime(res.data.data.question_makettime)
-        _this.setData({
-          textData: res.data.data
-        })
       }
     })
   },

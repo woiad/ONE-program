@@ -1,12 +1,12 @@
 // pages/music/music.js
 import util from '../../utils/util.js'
+import api from '../../api/api.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    idList: [],
     loadingHiden: false,
     flag: true,
     itemList: [],
@@ -20,15 +20,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/music/idlist/0',
-      method: 'GET',
-      success: function (res) {
-        _this.setData({
-          idList: _this.data.idList.concat(res.data.data)
-        })
-        _this.getData(res.data.data)
+    api.getMusicIdList({
+      success: (res) => {
+        if (res.data.res === 0) {
+          this.getData(res.data.data)
+        }
       }
     })
   },
@@ -84,19 +80,20 @@ Page({
   
   },
   getData: function (id) {
-    let _this = this
     let dataArr = this.data.itemList
     if (id.length > 0) {
-      let params = id.shift()
-      wx.request({
-        url: 'http://v3.wufazhuce.com:8000/api/music/detail/' + params,
-        method: 'GET',
-        success: function (res) {
-          res.data.data.maketime = util.formatMakettime(res.data.data.maketime)
-          res.data.data.story = util.filterContent(res.data.data.story)
-          res.data.data.contentType = 'story'
-          dataArr.push(res.data.data)
-          _this.getData(id)
+      api.getMusicById({
+        query: {
+          id: id.shift()
+        },
+        success: (res) => {
+          if (res.data.res === 0) {
+            res.data.data.maketime = util.formatMakettime(res.data.data.maketime)
+            res.data.data.story = util.filterContent(res.data.data.story)
+            res.data.data.contentType = 'story'
+            dataArr.push(res.data.data)
+            this.getData(id)
+          }
         }
       })
     } else {
@@ -165,7 +162,7 @@ Page({
   slideChangeHandle: function (e) {
     if (e.detail.current > 9) {
       wx.navigateTo({
-        url: '../index/previous/previous?sort=music'
+        url: '../index/previous/previous?sort=music&page=music'
       })
       this.setData({
         current: e.detail.current - 1

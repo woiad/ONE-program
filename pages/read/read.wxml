@@ -1,6 +1,6 @@
 <!--pages/read/read.wxml-->
 <loading hidden="{{loadingHiden}}">正在加载...</loading>
-<view class="container">
+<view class="container" wx:if="{{loadingHiden}}">
   <view class="carousel-wrap">
     <swiper duration="700" indicator-dots='true' autoplay='true'>
       <swiper-item wx:for="{{carouselItem}}" wx:key="index">

@@ -1,4 +1,5 @@
 // pages/move/move.js
+import api from '../../api/api.js'
 Page({
 
   /**
@@ -15,16 +16,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/channel/movie/more/' + this.data.lastId +'?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android',
-      method: 'GET',
-      success: function (res) {
-        _this.setData({
-          movies: _this.data.movies.concat(res.data.data),
-          lastId: res.data.data[res.data.data.length - 1].id,
-          loadingHiden: true
-        })
+    api.getMovieById({
+      query: {
+        id: this.data.lastId
+      },
+      success: (res) => {
+        if (res.data.res === 0) {
+          this.setData({
+            movies: this.data.movies.concat(res.data.data),
+            lastId: res.data.data[res.data.data.length - 1].id,
+            loadingHiden: true
+          })
+        }
       }
     })
   },
@@ -80,19 +83,21 @@ Page({
   
   },
   getMovies: function () {
-    let _this = this
     this.setData({
       loadingHiden: false
     })
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/channel/movie/more/' + this.data.lastId + '?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android',
-      method: 'GET',
-      success: function (res) {
-        _this.setData({
-          movies: _this.data.movies.concat(res.data.data),
-          lastId: res.data.data[res.data.data.length - 1].id,
-          loadingHiden: true
-        })
+    api.getMovieById({
+      query: {
+        id: this.data.lastId
+      },
+      success: (res) => {
+        if (res.data.res === 0) {
+          this.setData({
+            movies: this.data.movies.concat(res.data.data),
+            lastId: res.data.data[res.data.data.length - 1].id,
+            loadingHiden: true
+          })
+        }
       }
     })
   },

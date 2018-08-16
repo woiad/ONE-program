@@ -1,4 +1,5 @@
 // pages/read/read.js
+import api from '../../api/api.js'
 Page({
 
   /**
@@ -17,29 +18,40 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/reading/carousel',
-      method: 'GET',
-      success: function (res) {
-        _this.setData({
-          carouselItem: _this.data.carouselItem.concat(res.data.data)
-        })
+    api.getReadCarousel({
+      success: (res) => {
+        if (res.data.res === 0) {
+          this.setData({
+            carouselItem: this.data.carouselItem.concat(res.data.data)
+          })
+        }
       }
     })
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/reading/index',
-      method: 'GET',
-      success: function (res) {
-        console.log(res)
-        _this.setData({
-          storyEssay: _this.data.storyEssay.concat(res.data.data.essay),
-          question: _this.data.question.concat(res.data.data.question),
-          serial: _this.data.serial.concat(res.data.data.serial),
-          loadingHiden: true
-        })
+    api.getReading({
+      success: (res) => {
+        if (res.data.res === 0) {
+          this.setData({
+            storyEssay: this.data.storyEssay.concat(res.data.data.essay),
+            question: this.data.question.concat(res.data.data.question),
+            serial: this.data.serial.concat(res.data.data.serial),
+            loadingHiden: true
+          })
+        }
       }
     })
+    // wx.request({
+    //   url: 'http://v3.wufazhuce.com:8000/api/reading/index',
+    //   method: 'GET',
+    //   success: function (res) {
+    //     console.log(res)
+    //     _this.setData({
+    //       storyEssay: _this.data.storyEssay.concat(res.data.data.essay),
+    //       question: _this.data.question.concat(res.data.data.question),
+    //       serial: _this.data.serial.concat(res.data.data.serial),
+    //       loadingHiden: true
+    //     })
+    //   }
+    // })
   },
 
   /**
@@ -110,7 +122,7 @@ Page({
   swiperHandle: function (e) {
     if (e.detail.current === 10) {
       wx.navigateTo({
-        url: '../index/previous/previous?sort=read',
+        url: '../index/previous/previous?sort=read&page=read',
       })
       this.setData({
         current: e.detail.current - 1

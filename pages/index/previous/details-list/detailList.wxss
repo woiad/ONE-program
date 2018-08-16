@@ -10,6 +10,7 @@
   width: 48%;
   margin-bottom: 10px;
   border: 1px solid #ebebeb;
+  box-shadow: 1px 1px 1px #ebebeb;
 }
 .card-header{
   position: relative;
@@ -37,6 +38,7 @@
 }
 .card-bot{
   padding: 5px 3px;
+  line-height: 1.5;
 }
 .card-bot-text{
   display: -webkit-box;

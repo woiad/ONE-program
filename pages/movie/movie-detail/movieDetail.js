@@ -1,4 +1,4 @@
-// pages/movie/movie-detail/movieDetail.js
+import api from '../../../api/api.js'
 let app = getApp()
 Page({
 
@@ -19,25 +19,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/movie/detail/ '+options.id + '?channel=wdj&source=channel_movie&source_id=9240&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android',
-      method: 'GET',
-      success: function (res) {
-        _this.setData({
-          detail: res.data.data
-        })
+    api.getMovieDetail ({
+      query: {
+        id: options.id
+      },
+      success: (res) => {
+        if (res.data.res === 0) {
+          this.setData({
+            detail: res.data.data
+          })
+        }
       }
     })
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/movie/'+ options.id + '/story/1/0',
-      method: 'GET',
-      success: function (res) {
-        _this.setData({
-          text: res.data.data,
-          contentData: app.towxml.toJson(res.data.data.data[0].content, 'html'),
-          loaidngHidden: true
-        })
+    api.getMovieText({
+      query: {
+        id: options.id
+      },
+      success: (res) => {
+        if (res.data.res === 0) {
+          this.setData({
+            text: res.data.data,
+            contentData: app.towxml.toJson(res.data.data.data[0].content, 'html'),
+            loaidngHidden: true
+          })
+        }
       }
     })
   },

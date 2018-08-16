@@ -1,4 +1,5 @@
 import util from '../../utils/util.js'
+import api from '../../api/api.js'
 const app = getApp()
 
 Page({
@@ -9,32 +10,29 @@ Page({
     loadingHiden: false
   },
   onLoad:  function () {
-    let _this = this
-    wx.request({
-      url: 'http://v3.wufazhuce.com:8000/api/hp/idlist/0',
-      method: 'GET',
-      success: function (res) {
-        _this.setData({
-          itemParams: _this.data.itemParams.concat(res.data.data),
-        })
-        _this.getItem(_this.data.itemParams)
+    api.getVolIdList({
+      success: (res) => {
+        if (res.data.res === 0) {
+          let idList = res.data.data
+          this.getItem(idList)
+        }
       }
     })
   },
   getItem: function(idList) {
     let itemList = this.data.itemList
     if (idList.length > 0) {
-      let id = idList.shift()
-      let _this = this
-      wx.request({
-        url: 'http://v3.wufazhuce.com:8000/api/hp/detail/' + id,
-        method: 'GET',
-        success: function (res) {
+      let query = {
+        id: idList.shift()
+      }
+      api.getVolById({
+        query,
+        success: (res) => {
           let listData = res.data.data
           listData.hp_makettime = util.formatMakettime(listData.hp_makettime)
           itemList.push(listData)
-          _this.getItem(idList)
-        },
+          this.getItem(idList)
+        }
       })
     } else {
       this.setData({
@@ -52,7 +50,7 @@ Page({
         current: len
       })
       wx.navigateTo({
-        url: 'previous/previous?sort=imageText',
+        url: 'previous/previous?sort=imageText&page=index',
         success: function (res) {
           _this.setData({
             current: current -1
